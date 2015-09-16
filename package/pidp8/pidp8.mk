@@ -28,11 +28,11 @@ define PIDP8_INSTALL_TARGET_CMDS
 	mkdir $(TARGET_DIR)/opt/pidp8/etc
 	cp $(@D)/bin/pidp8 $(TARGET_DIR)/opt/pidp8/bin
 	cp $(@D)/bin/scanswitch $(TARGET_DIR)/opt/pidp8/bin
-	cp $(@D)/bin/automounter $(TARGET_DIR)/opt/pidp8/bin
+	cp $(@D)/bin/automount $(TARGET_DIR)/opt/pidp8/bin
+	cp $(@D)/bin/unmount $(TARGET_DIR)/opt/pidp8/bin
 	cp $(@D)/etc/rc.pidp8 $(TARGET_DIR)/etc/init.d/S50pidp8
-	cp $(@D)/etc/rc.automount $(TARGET_DIR)/etc/init.d/S60automount
+	cp $(@D)/etc/rc.automount $(TARGET_DIR)/etc/init.d/S45automount
 	cp $(@D)/etc/pdp.sh $(TARGET_DIR)/root/pdp.sh
-	chmod +x $(TARGET_DIR)/etc/init.d/S60automount
 	echo "./pdp.sh" > $(TARGET_DIR)/root/.profile
 	cp $(@D)/etc/init-functions $(TARGET_DIR)/opt/pidp8/etc/
 	cd $(@D) ; tar cf - bootscripts imagefiles | (cd $(TARGET_DIR)/opt/pidp8 ; tar xf -)
