@@ -31,11 +31,13 @@ define PIDP8_INSTALL_TARGET_CMDS
 	cp $(@D)/bin/automount $(TARGET_DIR)/opt/pidp8/bin
 	cp $(@D)/bin/unmount $(TARGET_DIR)/opt/pidp8/bin
 	cp $(@D)/etc/rc.pidp8 $(TARGET_DIR)/etc/init.d/S50pidp8
-	cp $(@D)/etc/rc.automount $(TARGET_DIR)/etc/init.d/S45automount
+	cp $(@D)/etc/rc.automount $(TARGET_DIR)/etc/init.d/S60automount
 	cp $(@D)/etc/pdp.sh $(TARGET_DIR)/root/pdp.sh
 	echo "./pdp.sh" > $(TARGET_DIR)/root/.profile
 	cp $(@D)/etc/init-functions $(TARGET_DIR)/opt/pidp8/etc/
 	cd $(@D) ; tar cf - bootscripts imagefiles | (cd $(TARGET_DIR)/opt/pidp8 ; tar xf -)
+	echo "ttyAMA0::respawn:/sbin/getty -L  ttyAMA0 115200 vt100" >> $(TARGET_DIR)/etc/inittab
+	echo "Welcome to PiDP/8" > $(TARGET_DIR)/etc/issue
 endef
 
 
